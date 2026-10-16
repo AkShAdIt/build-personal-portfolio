@@ -1,11 +1,58 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const fontMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+})
+
 export const metadata: Metadata = {
-  title: 'Akshayaditya K R — Developer Portfolio',
-  description: 'Portfolio of Akshayaditya K R, an aspiring backend developer exploring AI-assisted engineering and agentic systems.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://akshadit.in'),
+  title: 'Akshayaditya K R — Backend Developer & Agentic Systems Engineer',
+  description:
+    'Portfolio of Akshayaditya K R. Aspiring backend engineer specializing in scalable APIs, microservices, database architectures, and agentic AI systems.',
+  authors: [{ name: 'Akshayaditya K R', url: 'https://akshadit.in' }],
+  creator: 'Akshayaditya K R',
+  keywords: [
+    'Akshayaditya K R',
+    'Akshayaditya',
+    'Backend Developer',
+    'AI Engineer',
+    'Agentic Systems',
+    'PostgreSQL',
+    'Node.js',
+    'Python',
+    'Software Engineer Portfolio',
+  ],
+  alternates: {
+    canonical: 'https://akshadit.in',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://akshadit.in',
+    title: 'Akshayaditya K R — Backend Developer & Agentic Systems Engineer',
+    description:
+      'Backend architectures, APIs, and AI agentic workflows engineered beneath the surface.',
+    siteName: 'Akshayaditya K R Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Akshayaditya K R — Backend Developer & Agentic Systems Engineer',
+    description:
+      'Backend architectures, APIs, and AI agentic workflows engineered beneath the surface.',
+  },
   icons: {
     icon: [
       {
@@ -28,9 +75,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { media: '(prefers-color-scheme: light)', color: '#eee8d8' },
+    { media: '(prefers-color-scheme: dark)', color: '#13211b' },
   ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
@@ -39,11 +89,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className={`${fontSans.variable} ${fontMono.variable} scroll-smooth`}>
+      <body className="font-sans antialiased text-[#13211b] bg-[#eee8d8] selection:bg-[#b9db78] selection:text-[#13211b]">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+
